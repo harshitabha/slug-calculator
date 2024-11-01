@@ -1,33 +1,41 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userData, setData] = useState({
+    numMeals: 2,
+    cost: 12.75,
+    date: new Date(),
+    points: 0,
+  })
+  const [points, setPoints] = useState(0)
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+      <h1>Slug Points Calculator</h1>
+      <h2>Calculate the maxium amount of slug points you need till the end of the quarter</h2>
+      <div className="body">
+        <div className="mealsContainer">
+          <label htmlFor="mealsInput" className='inputLabel'>Meals Per Day</label>
+          <input type="number" min={1} value={userData.numMeals} id='mealsInput'/>
+        </div>
+
+        <div className="costContainer">
+          <label htmlFor="costInput" className='inputLabel'>Cost Per Meal</label>
+          <input type="number" min={1} value={userData.cost} id="costInput"/>
+        </div>
+
+        <div className="dateContainer">
+          <label htmlFor="dateInput" className='inputLabel'>Date</label>
+          <input type="date" value={userData.date}/>
+        </div>
+
+        <p className='result'>
+          Need {userData.points} slug points
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      
     </>
   )
 }
